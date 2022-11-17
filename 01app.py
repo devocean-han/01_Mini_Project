@@ -23,7 +23,6 @@ def test():
 def get_comments():
     comments_list1 = list(db.miniProject.find({}, {'_id':False}))
 
-
     # => 이거 콘솔에서는 잘 되는데 왜 여기서는 안되ㅣㅣㅣㅣㅣㅣㅣㅣ....ㅠㅠ
     # 참고: https://stackoverflow.com/questions/21446278/sort-python-list-of-dictionaries-by-key-if-key-exists
     # comments = comments_list[:].sort(key=lambda x: ('time' not in x, x.get('time', None)))
@@ -31,7 +30,7 @@ def get_comments():
     # comments = comments_list2 + comments_list1
     comments = comments_list1[5:]
     print(type(comments[0]['time']), comments[0]['time'])
-    comments.sort(key=lambda k: ("time" not in k, k.get("time", None)))
+    # comments.sort(key=lambda k: ("time" not in k, k.get("time", None)))
 
     return jsonify({'msg': '코멘트 불러오기를 완료했습니다', 'comments_list': comments})
 
@@ -39,13 +38,11 @@ def get_comments():
 def post_comment():
     name = request.form['name_given']
     comment = request.form['comment_given']
-    time = datetime.strptime(datetime.datetime.now("%Y-%m-%d %H:%M"))
-    print(type(time), time)
-
+    time = request.form['time_given']
     doc = {
         'name': name,
         'comment': comment,
-        'time': time
+        'time': time,
     }
     db.miniProject.insert_one(doc)
     # db2.guest.insert_one(doc)

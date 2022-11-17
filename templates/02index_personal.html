@@ -21,6 +21,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/index.css">
     <link href="../../fontawesome-free-6.2.0-web/css/all.min.css" rel="stylesheet">
+<!--    <script src="06main_page_comments.js"></script>-->
     <style>
         * {
             font-family: 'Do Hyeon', sans-serif;
@@ -101,23 +102,24 @@
             margin: 20px auto;
         }
 
-        .buttons > button {
+        .comment-buttons {
+            width: 300px;
+
+            /* 상자(나) 안 내용물 가운데 정렬하기 4형제 */
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+            margin: 20px auto;
+        }
+
+        .buttons > button, .comment-buttons > button {
             margin: 0px 5px;
         }
 
         .tmi-cards card {
             background-color: antiquewhite;
-        }
-
-        .to-home2 {
-            height: 300px;
-            width: 300px;
-            /* 배경화면 이미지 삼형제 */
-            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/infj1.png");
-
-            background-size: cover;
-            background-position: center 40%;
-
         }
 
         #card1 .card-image {
@@ -128,79 +130,77 @@
             justify-content: center;
             align-items: center;
         }
+
+        .to-home img{
+            width: 50px;
+        }
     </style>
     <script>
-        // 페이지 로딩이 완료되면
-        $(document).ready(function () {
-            reload_comment()
-        });
-
-        let count = 0;
-        let doc = [];
+        // // 페이지 로딩이 완료되면
         // $(document).ready(function () {
-        //     show_comment()
+        //     reload_comment()
         // });
-
-        // POST
-        function save_comment() {
-            // '코멘트'나 '닉네임'칸 중 하나라도 비어있으면 입력해달라는 alert() 띄우기
-            let name = $('#name').val()
-            let comment = $('#comment').val()
-            if (!name) {
-                alert('닉네임을 작성해주세요!')
-                return
-            }
-            if (!comment) {
-                alert('코멘트 내용을 작성해주세요!')
-                return
-            }
-            let check = confirm('이걸로 포스팅 하시겠습니까? 수정과 삭제가 어렵습니다^^')
-            if (check) {
-                // Ajax로 POST 요청 보내기
-                $.ajax({
-                    type: 'POST',
-                    url: '/api/post_comment',
-                    data: {'name_given': name, 'comment_given': comment},
-                    success: function (response) {
-                        alert(response['msg'])
-                        window.location.reload()
-                    }
-                })
-            }
-        }
-
-        // GET
-        function reload_comment(reverse=false) { // 디폴트는 과거순 정렬. 최신순으로 보려면 reverse=true;
-            $('#comment-cards').empty()
-            $.ajax({
-                type: 'GET',
-                url: '/api/get_comments',
-                data: {},
-                success: function (response) {
-                    alert(response['msg'])
-                    let comments_list = response['comments_list']
-                    if (reverse === true) { // 만약 최신순이라면: 받아온 순서 거꾸로.
-                        comments_list = comments_list.reverse()
-                    }
-                    for (let i = 0; i < comments_list.length; i++) {
-                        let name = comments_list[i]['name']
-                        let comment = comments_list[i]['comment']
-                        // if
-                        let time = comments_list[i]['time']
-                        console.log(typeof(time), time)
-                        let temp_html = `<div onclick="delete_comment()" class="card" data-time=${time}>
-                                            <div class="card-body">
-                                                <blockquote class="blockquote mb-0">
-                                                    <p>${comment}</p>
-                                                    <footer class="blockquote-footer">${name}</footer>
-                                                </blockquote>
-                                            </div>
-                                        </div>`
-                        $('#comment-cards').append(temp_html)
-                    }
-                }
-            })
-        }
+        //
+        // // POST
+        // function save_comment() {
+        //     // '코멘트'나 '닉네임'칸 중 하나라도 비어있으면 입력해달라는 alert() 띄우기
+        //     let name = $('#name').val()
+        //     let comment = $('#comment').val()
+        //     if (!name) {
+        //         alert('닉네임을 작성해주세요!')
+        //         return
+        //     }
+        //     if (!comment) {
+        //         alert('코멘트 내용을 작성해주세요!')
+        //         return
+        //     }
+        //     let check = confirm('이걸로 포스팅 하시겠습니까? 수정과 삭제가 어렵습니다^^')
+        //     if (check) {
+        //         // Ajax로 POST 요청 보내기
+        //         $.ajax({
+        //             type: 'POST',
+        //             url: '/api/post_comment',
+        //             data: {'name_given': name, 'comment_given': comment},
+        //             success: function (response) {
+        //                 alert(response['msg'])
+        //                 window.location.reload()
+        //             }
+        //         })
+        //     }
+        // }
+        //
+        // // GET
+        // function reload_comment(reverse=false) { // 디폴트는 과거순 정렬. 최신순으로 보려면 reverse=true;
+        //     $('#comment-cards').empty()
+        //     $.ajax({
+        //         type: 'GET',
+        //         url: '/api/get_comments',
+        //         data: {},
+        //         success: function (response) {
+        //             alert(response['msg'])
+        //             let comments_list = response['comments_list']
+        //             if (reverse === true) { // 만약 최신순이라면: 받아온 순서 거꾸로.
+        //                 comments_list = comments_list.reverse()
+        //             }
+        //             for (let i = 0; i < comments_list.length; i++) {
+        //                 let name = comments_list[i]['name']
+        //                 let comment = comments_list[i]['comment']
+        //                 // if
+        //                 let time = comments_list[i]['time']
+        //                 console.log(typeof(time), time)
+        //                 let temp_html = `<div onclick="delete_comment()" class="card" data-time=${time}>
+        //                                     <div class="card-body">
+        //                                         <blockquote class="blockquote mb-0">
+        //                                             <p>${comment}</p>
+        //                                             <footer class="blockquote-footer">${name}</footer>
+        //                                         </blockquote>
+        //                                     </div>
+        //                                 </div>`
+        //                 $('#comment-cards').append(temp_html)
+        //             }
+        //         }
+        //     })
+        // }
 
         // // $('.card').on('click', )
         // // DELETE : 아무 카드를 누르면 '삭제하시겠습니까?' 띄우고 '확인'버튼과 '취소'버튼 중 선택
@@ -382,6 +382,119 @@
             $("#card7").find("p").text("번개 치는 거 보는 걸 좋아해요. 천둥이랑 비구름도요. ")
         }
     </script>
+    <script>
+
+        let count = 0;
+        let doc = [];
+        $(document).ready(function () {
+            show_comment()
+        });
+
+        function save_comment() {
+            let name = $('#name').val()
+            let comment = $('#comment').val()
+            let today = new Date()
+            let time = today.toLocaleString()
+            $.ajax({
+                type: 'POST',
+                url: '/api/get_comments',
+                data: {name_given: name, comment_given: comment, time_given: time},
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            })
+        }
+
+        function show_comment() {
+            $('#comment-cards').empty()
+            $.ajax({
+                type: "GET",
+                url: "/api/get_comments",
+                data: {},
+                success: function (response) {
+                    doc = response['comments_list']
+                    for (let i = 0; i < doc.length; i++) {
+                        let comment = doc[i]['comment']
+                        let name = doc[i]['name']
+                        let time = doc[i]['time']
+                        let temp_html = `    <div class="card">
+                                        <div class="card-body">
+                                            <blockquote class="blockquote mb-0">
+                                                <small text-align="right">${time}</small>
+                                                <p>${comment}</p>
+                                                <footer class="blockquote-footer">${name}</footer>
+                                            </blockquote>
+                                        </div>
+                                    </div>`
+                        $('#comment-cards').append(temp_html)
+                    }
+                }
+            });
+        }
+
+        function new_comment() {
+            $('#comment-cards').empty()
+
+            function sort_field(field_name) {
+                return (a, b) => a[field_name] > b[field_name] ? -1 : 1;
+            }
+
+            let rows = doc.sort(sort_field("time"))
+            for (let i = 0; i < rows.length; i++) {
+                let comment = rows[i]['comment']
+                let name = rows[i]['name']
+                let time = rows[i]['time']
+                let temp_html = `    <div class="card">
+                                <div class="card-body">
+                                    <blockquote class="blockquote mb-0">
+                                        <small text-align="right">${time}</small>
+                                        <p>${comment}</p>
+                                        <footer class="blockquote-footer">${name}</footer>
+                                    </blockquote>
+                                </div>
+                            </div>`
+                $('#comment-cards').append(temp_html)
+            }
+            if ($('#comment-cards').is(':hidden')) {
+                $('#comment-cards').show();
+            }
+        }
+
+        function old_comment() {
+            $('#comment-cards').empty()
+
+            function sort_field(field_name) {
+                return (a, b) => a[field_name] > b[field_name] ? 1 : -1;
+            }
+
+            let rows = doc.sort(sort_field("time"))
+            for (let i = 0; i < rows.length; i++) {
+                let comment = rows[i]['comment']
+                let name = rows[i]['name']
+                let time = rows[i]['time']
+                let temp_html = `    <div class="card">
+                                <div class="card-body">
+                                    <blockquote class="blockquote mb-0">
+                                        <small text-align="right">${time}</small>
+                                        <p>${comment}</p>
+                                        <footer class="blockquote-footer">${name}</footer>
+                                    </blockquote>
+                                </div>
+                            </div>`
+                $('#comment-cards').append(temp_html)
+            }
+            if ($('#comment-cards').is(':hidden')) {
+                $('#comment-cards').show();
+            }
+        }
+
+        function rotation(e) {
+            count++;
+            let deg = count * 180;
+            e.style.transform = "rotate(" + deg + "deg)";
+        }
+    </script>
 </head>
 
 <body>
@@ -392,16 +505,16 @@
         우량주에 투자하세요! 열심히 크는 중입니다 :)</h5>
 </div>
 
-<div class="to-home" >
-    <a href="04index_my.html">
-        <img src="/static/infj1.png"></a>
-    <p onclick="javascript:location.href='04index_my.html';">여기 눌러봐</p>
-    <i class="fa-solid fa-house">폰트 어썸~ 안되네;;</i>
+<div class="to-home">
+    <a href="index.html">
+        <img src="/static/home_button1.png"></a>
+<!--    <p onclick="javascript:location.href='04index_my.html';">여기 눌러봐</p>-->
+<!--    <i class="fa-solid fa-house">폰트 어썸~ 안되네;;</i>-->
 </div>
-<div class="to-home2">
-    <a href="04index_my.html">홈버튼</a>
-    <a href="/toHome">toHome</a>
-</div>
+<!--<div class="to-home2">-->
+<!--    <a href="04index_my.html">홈버튼</a>-->
+<!--    <a href="/toHome">toHome</a>-->
+<!--</div>-->
 <div class="buttons">
     <button onclick="showOfficial()" type="button" id="official" class="btn btn-outline-secondary">소개</button>
     <button onclick="showUnofficial()" type="button" id="unofficial" class="btn btn-outline-primary">TMI 대방출</button>
@@ -489,7 +602,7 @@
                      class="card-img-top" alt="https://thumbs.dreamstime.com/b/mature-piano-player-elderly-woman-expressively-playing-eps-vector-illustration-141296345.jpg">
                 <div class="card-body">
                     <h5 class="card-title">취미: 피아노</h5>
-                    <p class="card-text">30년 후 나의 모습</p>
+<!--                    <p class="card-text">30년 후 나의 모습</p>-->
                     <p class="card-text"><small class="text-muted">30년 후 나의 모습</small></p>
                 </div>
             </div>
@@ -504,16 +617,16 @@
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card">
-                <img src=""
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">특기: 잠자기</h5>
-                    <p class="card-text">눈만 감으면 잡니다</p>
-                </div>
-            </div>
-        </div>
+<!--        <div class="col">-->
+<!--            <div class="card">-->
+<!--                <img src=""-->
+<!--                     class="card-img-top" alt="...">-->
+<!--                <div class="card-body">-->
+<!--                    <h5 class="card-title">특기: 잠자기</h5>-->
+<!--                    <p class="card-text">눈만 감으면 잡니다</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
 </div>
 <div class="mypost">
@@ -530,10 +643,10 @@
         <button onclick="save_comment()" type="button" class="btn btn-dark">응원 남기기</button>
     </div>
 </div>
-<div class="buttons">
+<div class="comment-buttons">
 <!--    댓글 보기는 '과거순'이 디폴트-->
     <button onclick="old_comment()" type="button" class="btn btn-outline-primary">과거순</button>
-    <button onclick="new_comment()" type="button" class="btn btn-outline-primary">최신순</button>
+    <button onclick="new_comment()" type="button" class="btn btn-outline-danger">최신순</button>
     <button onclick="hideComments()" type="button" id="hideComments" class="btn btn-outline-secondary">닫기</button>
 </div>
 <div class="comment-cards" id="comment-cards"></div>
