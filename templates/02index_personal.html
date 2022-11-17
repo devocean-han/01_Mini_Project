@@ -135,6 +135,12 @@
             reload_comment()
         });
 
+        let count = 0;
+        let doc = [];
+        // $(document).ready(function () {
+        //     show_comment()
+        // });
+
         // POST
         function save_comment() {
             // '코멘트'나 '닉네임'칸 중 하나라도 비어있으면 입력해달라는 alert() 띄우기
@@ -322,36 +328,44 @@
         }
 
         function card5In() {
-            $("#card5").find(".card-group").html('<h5 class="card-title">: INFJ + 9W1 조합의 캐릭터</h5>' +
-                '<p class="card-text"><small class="text-muted">어째선지 모두 죽음을 맞이한 인물들(?)</small></p>')
+            $("#card5").find("img").attr("src", "/static/Remus_Lupin_400.png")
+            // $("#card5").find("h5").html('<h5 class="card-title">Remus Lupin <br>리무스 루핀 -해리포터</h5>')
+            $("#card5").find("h5").text("");
+            $("#card5").find("p:first-child").html('<p class="card-text">Remus Lupin <br>리무스 루핀 -해리포터</p>')
+            $("#card5").find(".text-muted").text("어째선지 모두 죽음을 맞이한 인물들(?)")
+            // $("#card5").find(".card-group").html('<h5 class="card-title">: INFJ + 9W1 조합의 캐릭터</h5>' +
+            //     '<p class="card-text"><small class="text-muted">어째선지 모두 죽음을 맞이한 인물들(?)</small></p>')
             // $("#card5").find("p").html('<p class="card-text"><small class="text-muted">저 9번의 캐해석 이보다 더 정확할 순 없다</small></p>')
             // $("#card5").find(".card-text:first-child").text("INFJ + 9W1 조합")
             // $("#card5").find(".card-text:nth-child(2)").text("")
             // $("#card5").find(".text-muted:nth-child(1)").text("어째선지 모두 죽음을 맞이한 인물들(?)")
-            // $("#card5").find(".text-muted:nth-child(2)").text("어째선지 모두 죽음을 맞이한 인물들(?)")
         }
 
         function card5Out() {
-            $("#card5").find(".ccard-group").html('<div class="row-cols-1 card-group">\n' +
-                '                    <div class="card">\n' +
-                '                        <img src="https://64.media.tumblr.com/15f200fea329b628f112bfd9348f9ccd/tumblr_nrydbnpNvv1tgh6zro5_400.png" class="card-img-top" alt="...">\n' +
-                '                        <div class="card-body">\n' +
-                '                            <h5 class="card-title">Remus Lupin</h5>\n' +
-                '<!--                            <h5 class="card-title">()</h5>-->\n' +
-                '                            <p class="card-text">리무스 루핀</p>\n' +
-                '                            <p class="card-text"><small class="text-muted">해리포터</small></p>\n' +
-                '                        </div>\n' +
-                '                    </div>\n' +
-                '                    <div class="card">\n' +
-                '                        <img src="https://static1.personality-database.com/profile_images/88dfaebec0df430da4e940617f0db6cf.png" class="card-img-top" alt="...">\n' +
-                '                        <div class="card-body">\n' +
-                '                            <h5 class="card-title">Master Oogway</h5>\n' +
-                '<!--                            <h5 class="card-title">()</h5>-->\n' +
-                '                            <p class="card-text">우그웨이 대사부</p>\n' +
-                '                            <p class="card-text"><small class="text-muted">쿵푸팬더</small></p>\n' +
-                '                        </div>\n' +
-                '                    </div>\n' +
-                '                </div>')
+            $("#card5").find("img").attr("src", "/static/Oogway.png")
+            $("#card5").find("h5").text("픽션 속 캐릭터로 알아보는 INFJ와 9W1의 콤보");
+            $("#card5").find("p:first-child").html('<p class="card-text">Master Oogway <br>우그웨이 대사부 -쿵푸팬더</p>')
+            $("#card5").find(".text-muted").text("")
+            // $("#card5").find(".ccard-group").html('<div class="row-cols-1 card-group">\n' +
+            //     '                    <div class="card">\n' +
+            //     '                        <img src="https://64.media.tumblr.com/15f200fea329b628f112bfd9348f9ccd/tumblr_nrydbnpNvv1tgh6zro5_400.png" class="card-img-top" alt="...">\n' +
+            //     '                        <div class="card-body">\n' +
+            //     '                            <h5 class="card-title">Remus Lupin</h5>\n' +
+            //     '<!--                            <h5 class="card-title">()</h5>-->\n' +
+            //     '                            <p class="card-text">리무스 루핀</p>\n' +
+            //     '                            <p class="card-text"><small class="text-muted">해리포터</small></p>\n' +
+            //     '                        </div>\n' +
+            //     '                    </div>\n' +
+            //     '                    <div class="card">\n' +
+            //     '                        <img src="https://static1.personality-database.com/profile_images/88dfaebec0df430da4e940617f0db6cf.png" class="card-img-top" alt="...">\n' +
+            //     '                        <div class="card-body">\n' +
+            //     '                            <h5 class="card-title">Master Oogway</h5>\n' +
+            //     '<!--                            <h5 class="card-title">()</h5>-->\n' +
+            //     '                            <p class="card-text">우그웨이 대사부</p>\n' +
+            //     '                            <p class="card-text"><small class="text-muted">쿵푸팬더</small></p>\n' +
+            //     '                        </div>\n' +
+            //     '                    </div>\n' +
+            //     '                </div>')
             // $("#card5").find("p").text("이보다는 에니어그램의 9번이 더 맞는 편입니다")
         }
 
@@ -390,7 +404,7 @@
 </div>
 <div class="buttons">
     <button onclick="showOfficial()" type="button" id="official" class="btn btn-outline-secondary">소개</button>
-    <button onclick="showUnofficial()" type="button" id="unofficial" class="btn btn-outline-primary">TMI</button>
+    <button onclick="showUnofficial()" type="button" id="unofficial" class="btn btn-outline-primary">TMI 대방출</button>
 </div>
 <div class="official-cards">
     <div class="card mb-3" style="max-width: 740px;">
@@ -408,7 +422,7 @@
                         보호받는 입장에서 보호하는 입장으로!<br>
                         팀원으로 데려가고 싶은 개발자로!<br>
                         성장하고자 합니다. </p>
-                    <p class="card-text"><small class="text-muted">나머지 소개는 TMI 코너에서 보고 가실게요!</small></p>
+                    <p class="card-text"><small class="text-muted">나머지 소개는 TMI 코너에서!</small></p>
                 </div>
             </div>
         </div>
@@ -444,7 +458,7 @@
                 <img src="https://media.tenor.com/hrfdrw66DYwAAAAM/snow-jon-snow.gif" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">추위를... 많이 탑니다</h5>
-                    <p class="card-text">.</p>
+                    <p class="card-text"></p>
                 </div>
             </div>
         </div>
@@ -460,25 +474,12 @@
         </div>
         <div class="col">
             <div id="card5" onmouseover="card5In()" onmouseleave="card5Out()" class="card">
-                <div class="row-cols-1 card-group">
-                    <div class="card">
-                        <img src="https://64.media.tumblr.com/15f200fea329b628f112bfd9348f9ccd/tumblr_nrydbnpNvv1tgh6zro5_400.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Remus Lupin</h5>
-<!--                            <h5 class="card-title">()</h5>-->
-                            <p class="card-text">리무스 루핀</p>
-                            <p class="card-text"><small class="text-muted">해리포터</small></p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="https://static1.personality-database.com/profile_images/88dfaebec0df430da4e940617f0db6cf.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Master Oogway</h5>
-<!--                            <h5 class="card-title">()</h5>-->
-                            <p class="card-text">우그웨이 대사부</p>
-                            <p class="card-text"><small class="text-muted">쿵푸팬더</small></p>
-                        </div>
-                    </div>
+                <img src="/static/Oogway.png"
+                     class="card-img-top" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">픽션 속 캐릭터로 알아보는 INFJ와 9W1의 콤보</h5>
+                    <p class="card-text">Master Oogway <br>우그웨이 대사부 -쿵푸팬더</p>
+                    <p class="card-text"><small class="text-muted"></small></p>
                 </div>
             </div>
         </div>
@@ -498,7 +499,7 @@
                 <img src="/static/lightning1.gif"
                      class="card-img-top" alt="https://www.weather.gov/images/safety/Animation/Animation_16a.gif">
                 <div class="card-body">
-                    <h5 class="card-title">쉬는 시간에 하는 것</h5>
+                    <h5 class="card-title">진짜 TMI</h5>
                     <p class="card-text">번개 치는 거 보는 걸 좋아해요. 천둥이랑 비구름도요. 다들 구름 한 번 보고 가세요/xtrom</p>
                 </div>
             </div>
@@ -531,8 +532,8 @@
 </div>
 <div class="buttons">
 <!--    댓글 보기는 '과거순'이 디폴트-->
-    <button onclick="showComments()" type="button" id="showComments" class="btn btn-outline-primary">댓글 과거순 보기</button>
-    <button onclick="showComments(true)" type="button" id="showReverseOrder" class="btn btn-outline-primary">댓글 최신순 보기</button>
+    <button onclick="old_comment()" type="button" class="btn btn-outline-primary">과거순</button>
+    <button onclick="new_comment()" type="button" class="btn btn-outline-primary">최신순</button>
     <button onclick="hideComments()" type="button" id="hideComments" class="btn btn-outline-secondary">닫기</button>
 </div>
 <div class="comment-cards" id="comment-cards"></div>
