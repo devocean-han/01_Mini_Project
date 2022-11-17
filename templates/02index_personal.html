@@ -105,7 +105,7 @@
             margin: 0px 5px;
         }
 
-        .card {
+        .tmi-cards card {
             background-color: antiquewhite;
         }
 
@@ -364,8 +364,8 @@
 
         function card7Out() {
             $("#card7").find("img").attr("src", "/static/lightning1.gif")
-            $("#card7").find("h5").text("쉬는 시간에 하는 것");
-            $("#card7").find("p").text("번개 치는 거 보는 걸 좋아해요. 천둥이랑 비구름도요.")
+            $("#card7").find("h5").text("진짜 TMI");
+            $("#card7").find("p").text("번개 치는 거 보는 걸 좋아해요. 천둥이랑 비구름도요. ")
         }
     </script>
 </head>
@@ -373,8 +373,9 @@
 <body>
 <div class="mytitle">
     <h3>(급작스레) 노드 지망</h3>
+    <h5>팀원으로 데려가고 싶은 개발자</h5>
     <h1>김희서</h1>
-    <!--    <p>현재 기온: <span id="temperature">00.0</span>도</p>-->
+        우량주에 투자하세요! 열심히 크는 중입니다 :)</h5>
 </div>
 
 <div class="to-home" >
@@ -388,8 +389,8 @@
     <a href="/toHome">toHome</a>
 </div>
 <div class="buttons">
-    <button onclick="showOfficial()" type="button" id="official" class="btn btn-outline-secondary">Official</button>
-    <button onclick="showUnofficial()" type="button" id="unofficial" class="btn btn-outline-primary">Unofficial</button>
+    <button onclick="showOfficial()" type="button" id="official" class="btn btn-outline-secondary">소개</button>
+    <button onclick="showUnofficial()" type="button" id="unofficial" class="btn btn-outline-primary">TMI</button>
 </div>
 <div class="official-cards">
     <div class="card mb-3" style="max-width: 740px;">
@@ -400,10 +401,14 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <h5 class="card-title">안녕하세요!</h5>
+                    <p class="card-text">백엔드(노드) 개발자 지망생, 김희서라고 합니다.<br>
+                        물리/수학 기반의 기상학을 전공했지만 사정이 생겨서 졸업을 끝마치지 못했어요.
+                        감사하게도 지금까지는 부모님 품에서 지냈고, 이제는 독립하기 위해 열심히 날갯짓 중입니다.<br>
+                        보호받는 입장에서 보호하는 입장으로!<br>
+                        팀원으로 데려가고 싶은 개발자로!<br>
+                        성장하고자 합니다. </p>
+                    <p class="card-text"><small class="text-muted">나머지 소개는 TMI 코너에서 보고 가실게요!</small></p>
                 </div>
             </div>
         </div>
